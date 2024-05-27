@@ -1,0 +1,57 @@
+.card {
+
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: relative;
+  top: 0;
+  transition: top 0.3s;
+  height: 25rem;
+
+}
+
+.card:hover {
+  top: -10px;
+}
+
+
+
+.card-img-top {
+  height: 204px;
+}
+
+
+.card-body p {
+  color: var(--Dark-grayish-blue);
+  margin: 0;
+  font-size: 14px;
+}
+
+
+
+.price {
+  margin: 0;
+
+}
+
+.card a:hover {
+  color: beige;
+  border-color: var(--main-color);
+}
+
+.card-footer {
+  padding: 0;
+
+  .tocart {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: var(--Dark-grayish-blue);
+    border: 0;
+    padding: 10px;
+  }
+}
+
+.card-footer:hover {
+  opacity: 0.8;
+}

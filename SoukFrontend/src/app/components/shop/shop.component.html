@@ -1,0 +1,18 @@
+<div *ngIf="products" class=" mt-5 d-flex justify-content-end">
+  <select class="form-select  filtrage" aria-label="Default select example" (change)="onOptionSelected($event)">
+    <option selected value="">Categories</option>
+    <option *ngFor="let cat of categories" [value]="cat.name">{{cat.name}}</option>
+    <!-- <option routerLink="/shop" [queryParams]="{category:'plateaux'}"><a>plateaux</a></option> -->
+  </select>
+
+</div>
+<div class="d-flex justify-content-center align-items-center flex-wrap gap-5 mt-2">
+  <app-product-card *ngFor="let product of filteredProducts" [product]="product"></app-product-card>
+</div>
+
+
+<p-scrollTop [threshold]="100" styleClass="custom-scrolltop" icon="pi pi-angle-double-up"></p-scrollTop>
+
+<div *ngIf="!products" class="d-flex justify-content-center align-items-center no-product">
+  <h1>Sorry, no products are available at the moment. <br> Please check back later!"</h1>
+</div>

@@ -1,0 +1,15 @@
+<div class="card" style="width: 18rem;">
+  <img [src]="product.img" class="card-img-top " alt="product.title">
+  <div class="card-body">
+    <h5 class="card-title text-uppercase fw-bold ">{{product.name}}</h5>
+    <p class="card-text">{{product.description}}</p>
+  </div>
+
+  <div class="card-body d-flex  justify-content-between align-items-center">
+    <h5 class="price fw-bold">{{product.price | currency: 'USD'}}</h5>
+    <p class="stock">{{product.stock +" items in Stock"}}</p>
+  </div>
+  <div class="card-footer">
+    <button *ngIf="showbtnCart" class="btn btn-secondary tocart">Add to Cart</button>
+  </div>
+</div>

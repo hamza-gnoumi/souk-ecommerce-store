@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg bg-transparent">
+  <div class="container nav-bord ">
+    <a class="navbar-brand p-2 p-lg-3" href="#"><img src="../../../assets/images/logo.png" alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link p-2 p-lg-3 active" aria-current="page" routerLink="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link p-2 p-lg-3" routerLink="shop">Shop</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link p-2 p-lg-3 " role="button" routerLink="blog" aria-expanded="false">
+            blog
+          </a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link p-2 p-lg-3" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link p-2 p-lg-3" href="#">Contact</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav justify-content-center align-items-lg-center gap-4">
+
+        <span class=" nav-link cart  pi pi-shopping-cart" alt="icon-cart"></span>
+        <li class="nav-item dropdown">
+          <img class="profil" src="../../../assets/images/image-avatar.png" alt="User" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="admin/products">My Orders </a></li>
+            <!--   <ng-container *ngIf="currentUser.isAdmin">-->
+            <li><a class="dropdown-item" routerLink="admin/orders">Manage Orders</a></li>
+            <li> <a class="dropdown-item" routerLink="admin/products">Manage Products</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,10 @@
+@media (min-width: 992px) {
+  .filtrage {
+    width: 300px;
+  }
+}
+
+.no-product {
+  min-height: calc(100vh - 120px);
+  text-align: center;
+}

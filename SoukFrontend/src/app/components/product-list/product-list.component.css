@@ -1,0 +1,12 @@
+.showMore {
+  margin: auto;
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: var(--Orange);
+  border: none;
+  color: white;
+}
+
+.showMore:hover {
+  opacity: 0.8;
+}

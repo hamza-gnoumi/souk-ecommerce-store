@@ -1,0 +1,46 @@
+<div class="card mt-3">
+  <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+      <div class="d-flex align-items-center justify-content-between">
+        Products
+        <p-button routerLink="pdt">Add Product</p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Stock</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{product.name}}</td>
+        <td><img [src]="product.img" [alt]="product.name" width="100" class="shadow-4" /></td>
+        <td>{{product.price | currency:'USD'}}</td>
+        <td>{{product.categoryName}}</td>
+        <td>{{product.stock}}</td>
+        <td>
+          <div class="d-flex align-items-center justify-content-center gap-5">
+            <a [routerLink]="['/admin/products/', product.id]"><span class="pi pi-pencil mr-1"></span> </a><span
+              class="pi pi-trash btn" (click)="deleteProduct(product)"></span>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{products ? products.length : 0 }} products.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Delete"
+  acceptButtonStyleClass="p-button-danger hide-duplicated-icon" acceptIcon="pi pi-trash" rejectLabel="Cancel"
+  rejectButtonStyleClass="p-button-outlined p-button-secondary"></p-confirmDialog>
+
+<p-toast position="bottom-center"></p-toast>
