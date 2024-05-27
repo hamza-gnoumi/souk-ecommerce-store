@@ -24,6 +24,9 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 import { GalleriaModule } from 'primeng/galleria';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AvatarModule } from 'primeng/avatar';
 
 
 @NgModule({
@@ -38,6 +41,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
     ProductFormComponent,
     ProductCardComponent,
     ProductListComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
     ToastModule,
     ScrollTopModule,
     GalleriaModule,
-    StyleClassModule
+    StyleClassModule,
+    AvatarModule,
 
   ],
   providers: [

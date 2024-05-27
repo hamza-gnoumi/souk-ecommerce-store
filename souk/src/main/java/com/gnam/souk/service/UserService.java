@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,10 +20,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserDtoMapper userDtoMapper;
 
-    public void addUser(User user){
+    public User addUser(User user){
         if(userRepository.existsUserByEmail(user.getEmail()))
             throw new DuplicateResourceException("Email Already taken: "+user.getEmail());
-        userRepository.save(user);
+        return  userRepository.save(user);
     }
     public List<UserDto> findAll(){
        return userRepository.findAll().stream()
@@ -62,6 +63,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-
+    public Optional<User> selectUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
 
 }

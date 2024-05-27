@@ -6,6 +6,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'admin/products/:id', component: ProductFormComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'blog', component: BlogComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
   { path: '**', component: NotFoundComponent },
 

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -98,6 +99,18 @@ public class ProductService {
             mongoTemplate.remove(product);
 
         }
+
+
+
+    public void updateCategoryNameOfProduct(String id, String updatedCategoryName) {
+        if( categoryService.findById(id)==null)
+            throw  new NotFoundException("Category not found with name: " + id);
+
+        Query query=new Query(Criteria.where("categoryName").is(categoryService.findById(id).getName()));
+        Update update =new Update().set("categoryName", updatedCategoryName);
+        mongoTemplate.findAndModify(query, update, Product.class);
+
     }
+}
 
 
