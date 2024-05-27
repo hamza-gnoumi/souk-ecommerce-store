@@ -8,9 +8,11 @@ import com.gnam.souk.model.UserDto;
 import com.gnam.souk.model.UserDtoMapper;
 import com.gnam.souk.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,10 +20,13 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepository userRepository;
     private final UserDtoMapper userDtoMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public void addUser(User user){
         if(userRepository.existsUserByEmail(user.getEmail()))
             throw new DuplicateResourceException("Email Already taken: "+user.getEmail());
+        String passwordEncoded=passwordEncoder.encode(user.getEmail());
+        user.setPassword(passwordEncoded);
         userRepository.save(user);
     }
     public List<UserDto> findAll(){
@@ -62,6 +67,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-
+    public Optional<User> selectUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
 
 }
