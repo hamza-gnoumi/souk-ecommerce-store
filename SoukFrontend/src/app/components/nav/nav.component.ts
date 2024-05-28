@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
+  Logout() {
+    throw new Error('Method not implemented.');
+  }
 
 }

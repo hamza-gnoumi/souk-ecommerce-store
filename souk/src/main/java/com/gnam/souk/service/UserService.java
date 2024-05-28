@@ -8,6 +8,7 @@ import com.gnam.souk.model.UserDto;
 import com.gnam.souk.model.UserDtoMapper;
 import com.gnam.souk.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +20,15 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepository userRepository;
     private final UserDtoMapper userDtoMapper;
+    @Autowired
+    private  CartService cartService;
+    @Autowired
+    private OrderService orderService;
 
-    public User addUser(User user){
+    public void addUser(User user){
         if(userRepository.existsUserByEmail(user.getEmail()))
             throw new DuplicateResourceException("Email Already taken: "+user.getEmail());
-        return  userRepository.save(user);
+        userRepository.save(user);
     }
     public List<UserDto> findAll(){
        return userRepository.findAll().stream()
@@ -60,6 +65,9 @@ public class UserService {
     public void deleteUser(String id){
         userRepository.findById(id)
                 .orElseThrow(()->new NotFoundException("User not found with id: "+id ));
+        cartService.deleteCartByUserId(id);
+        if (orderService.existsOrdersByUserId(id))
+            orderService.deleteOrdersByUserId(id);
         userRepository.deleteById(id);
     }
 

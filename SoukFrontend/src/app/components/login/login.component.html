@@ -22,10 +22,10 @@
     </div>
   </form>
 </div> -->
-
-
-<form class=" flex flex-column justify-content-center" #UserForm="ngForm" (ngSubmit)="login()">
-  <input type="text" name="username" id="username" [(ngModel)]="userlogin.username">
-  <input type="text" name="password" id="password" [(ngModel)]="userlogin.password">
-  <button class="btn btn-primary" type="submit"></button>
-</form>
+<div class="container">
+  <form class=" flex flex-column justify-content-center" #UserForm="ngForm" (ngSubmit)="login()">
+    <input type="text" name="username" id="username" [(ngModel)]="userlogin.username">
+    <input type="text" name="password" id="password" [(ngModel)]="userlogin.password">
+    <button class="btn btn-primary" type="submit"></button>
+  </form>
+</div>

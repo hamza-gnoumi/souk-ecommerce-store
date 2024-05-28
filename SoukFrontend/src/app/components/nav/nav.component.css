@@ -33,8 +33,15 @@
 
 }
 
-.nav-item:hover {
+.nav-item:not(:last-of-type):hover {
   border-color: var(--Orange);
+
+}
+
+@media (max-width: 992px) {
+  .nav-item:last-child {
+    margin: 7px 0;
+  }
 
 }
 

@@ -18,7 +18,8 @@ public class ProductService {
 
     private final MongoTemplate mongoTemplate;
     private final CategoryService categoryService;
-
+    private final CartService cartService;
+    private final OrderService orderService;
 
 
     public void save(Product product){
@@ -97,7 +98,8 @@ public class ProductService {
             if(product==null)
                 throw new NotFoundException("Product not found with id: " + id);
             mongoTemplate.remove(product);
-
+            cartService.removeDeletedProductFromCarts(id);
+            orderService.removeDeletedProductFromOrders(id);
         }
 
 
@@ -109,6 +111,7 @@ public class ProductService {
         Query query=new Query(Criteria.where("categoryName").is(categoryService.findById(id).getName()));
         Update update =new Update().set("categoryName", updatedCategoryName);
         mongoTemplate.findAndModify(query, update, Product.class);
+
 
     }
 }
