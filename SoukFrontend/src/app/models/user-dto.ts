@@ -1,10 +1,10 @@
 export interface UserDto {
 
-  id?: number;
+  id?: string;
   name?: string;
   email?: string;
   isAdmin?: boolean;
-  username?: string;
+
 
 
 }

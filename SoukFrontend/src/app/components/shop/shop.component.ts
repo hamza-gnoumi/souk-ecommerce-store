@@ -5,6 +5,8 @@ import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/products.service';
 import { switchMap } from 'rxjs';
+import { Cart } from 'src/app/models/cart';
+import { UserDto } from 'src/app/models/user-dto';
 
 @Component({
   selector: 'app-shop',
@@ -16,15 +18,21 @@ export class ShopComponent implements OnInit {
   categories: Category[];
   category;
   filteredProducts: Product[];
-  constructor(private productService: ProductsService, private categoriesService: CategoriesService, private route: ActivatedRoute, private router: Router) { }
+  cart: Cart;
+  user: UserDto;
+  constructor(private productService: ProductsService,
+    private categoriesService: CategoriesService,
+    private route: ActivatedRoute, private router: Router) { }
   ngOnInit() {
+    if (localStorage.getItem('user'))
+      this.user = JSON.parse(localStorage.getItem('user'))
     this.findProducts();
     this.findAllCategories();
   }
 
 
   private findAllCategories() {
-    this.categoriesService.findAll().subscribe({
+    this.categoriesService.getCategories().subscribe({
       next: (data) => this.categories = data
     })
   }

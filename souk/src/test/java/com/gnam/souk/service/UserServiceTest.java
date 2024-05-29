@@ -31,7 +31,7 @@ public class UserServiceTest {
 @Test
     void canGetUserByEmail(){
         String email="ayoub@domain.com";
-    User expected=new User("kjllkj","hamza", email, "hamza",true);
+    User expected=new User("5454lklm54","hamza", email, "hamza",true);
             Mockito.when(userRepository.findUserByEmail(email))
                     .thenReturn(Optional.of(expected));
     User actual=underTest.selectUserByEmail(email).get();

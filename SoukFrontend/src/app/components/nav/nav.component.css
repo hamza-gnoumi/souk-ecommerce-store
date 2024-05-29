@@ -1,6 +1,9 @@
 .nav-bord {
   position: relative;
+
 }
+
+
 
 .navbar-brand img {
   height: 50px;
@@ -31,6 +34,10 @@
   border-bottom: 3px solid transparent;
   z-index: 54;
 
+}
+
+.nav-item {
+  color: white;
 }
 
 .nav-item:not(:last-of-type):hover {

@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './components/nav/nav.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/home-page/home/home.component';
 import { ShopComponent } from './components/shop/shop.component';
-import { AdminPoductsComponent } from './components/admin-poducts/admin-poducts.component';
+import { AdminPoductsComponent } from './components/Admin/admin-poducts/admin-poducts.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { TableModule } from 'primeng/table';
@@ -24,9 +24,21 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 import { GalleriaModule } from 'primeng/galleria';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { AvatarModule } from 'primeng/avatar';
+import { BrandsComponent } from './components/home-page/brands/brands.component';
+import { FooterHomeComponent } from './components/home-page/footer-home/footer-home.component';
+import { ManageOrdersComponent } from './components/Admin/manage-orders/manage-orders.component';
+import { ShowOrderComponent } from './components/show-order/show-order.component';
+import { ShowCartComponent } from './components/show-cart/show-cart.component';
+import { ManageUsersComponent } from './components/Admin/manage-users/manage-users.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ManageCategoriesComponent } from './components/Admin/manage-categories/manage-categories.component';
+import { CategoryFormComponent } from './components/Admin/category-form/category-form.component';
+
+
 
 
 @NgModule({
@@ -43,6 +55,14 @@ import { AvatarModule } from 'primeng/avatar';
     ProductListComponent,
     LoginComponent,
     RegisterComponent,
+    BrandsComponent,
+    FooterHomeComponent,
+    ManageOrdersComponent,
+    ShowOrderComponent,
+    ShowCartComponent,
+    ManageUsersComponent,
+    ManageCategoriesComponent,
+    CategoryFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +79,8 @@ import { AvatarModule } from 'primeng/avatar';
     GalleriaModule,
     StyleClassModule,
     AvatarModule,
+    SidebarModule,
+    ConfirmPopupModule,
 
   ],
   providers: [

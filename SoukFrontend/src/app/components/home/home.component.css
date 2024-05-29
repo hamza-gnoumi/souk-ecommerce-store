@@ -1,9 +1,0 @@
-.card img {
-  height: 290px;
-}
-
-@media (min-width: 992px) {
-  .card img {
-    height: 685px;
-  }
-}

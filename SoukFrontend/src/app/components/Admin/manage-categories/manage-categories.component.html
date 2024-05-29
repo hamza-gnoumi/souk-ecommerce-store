@@ -1,0 +1,42 @@
+<p-sidebar [(visible)]="display" position="right" class="hamza" styleClass="p-sidebar-md"
+  transitionOptions="300ms cubic-bezier(0,0,0.2,1)">
+  <app-category-form [category]="category" [operation]="operation" (submit)="save($event)"
+    (cancel)="cancel($event)"></app-category-form>
+</p-sidebar>
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between">
+    Categories
+    <p-button (click)="createCategory()">Add Category</p-button>
+  </div>
+  <div class="card mt-3">
+    <p-table [value]="categories" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cat>
+        <tr>
+          <td>{{ cat.id }}</td>
+          <td>{{ cat.name }}</td>
+          <td>
+            <div class=" d-flex align-items-center justify-content-center gap-5">
+              <span (click)="updateCategory(cat)" class="pi pi-pencil mr-1 btn"></span>
+              <span class="pi pi-trash btn" (click)="deleteCategory(cat)"></span>
+            </div>
+          </td>
+
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Delete"
+    acceptButtonStyleClass="p-button-danger hide-duplicated-icon" acceptIcon="pi pi-trash" rejectLabel="Cancel"
+    rejectButtonStyleClass="p-button-outlined p-button-secondary"></p-confirmDialog>
+
+
+  <p-toast position="bottom-center"></p-toast>
+</div>

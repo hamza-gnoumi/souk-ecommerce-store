@@ -33,7 +33,7 @@ public class CategoryService {
                 .orElseThrow(()->new NotFoundException("Category not found with id: " + id));
         if (updatedCategory.getName()==null || updatedCategory.getName().equals(category.getName()))
             throw new RequestValidationException("No Data Changes Found");
-        if(existsCategoryByName(category.getName()))
+        if(existsCategoryByName(updatedCategory.getName()))
             throw new DuplicateResourceException("Category Name Already taken: "+category.getName());
         String categoryName = category.getName();
         category.setName(updatedCategory.getName());

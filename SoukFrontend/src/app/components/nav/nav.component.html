@@ -20,28 +20,31 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link p-2 p-lg-3" href="#">About</a>
+          <a class="nav-link p-2 p-lg-3" href="">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link p-2 p-lg-3" href="#">Contact</a>
+          <a class="nav-link p-2 p-lg-3" href="">Contact</a>
         </li>
       </ul>
       <ul class="navbar-nav justify-content-center align-items-lg-center gap-lg-4">
 
-        <span class=" nav-link cart  pi pi-shopping-cart" alt="icon-cart"></span>
+        <span class=" nav-link cart  pi pi-shopping-cart" alt="icon-cart" routerLink="/mycart"></span>
         <li class="nav-item dropdown">
           <img class="profil" src="../../../assets/images/image-avatar.png" alt="User" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
 
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="admin/products">My Orders </a></li>
-            <!--   <ng-container *ngIf="currentUser.isAdmin">-->
-            <li><a class="dropdown-item" routerLink="admin/orders">Manage Orders</a></li>
-            <li> <a class="dropdown-item" routerLink="admin/products">Manage Products</a></li>
+            <li><a class="dropdown-item" routerLink="myorder">My Orders </a></li>
+            <ng-container *ngIf="currentUser.isAdmin">
+              <li><a class="dropdown-item" routerLink="admin/orders">Manage Orders</a></li>
+              <li> <a class="dropdown-item" routerLink="admin/products">Manage Products</a></li>
+              <li> <a class="dropdown-item" routerLink="admin/users">Manage Users</a></li>
+              <li> <a class="dropdown-item" routerLink="admin/categories">Manage Categories</a></li>
+            </ng-container>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" (click)="Logout()">Logout</a></li>
+            <li><a class="dropdown-item" href="" (click)="Logout()">Logout</a></li>
           </ul>
         </li>
       </ul>

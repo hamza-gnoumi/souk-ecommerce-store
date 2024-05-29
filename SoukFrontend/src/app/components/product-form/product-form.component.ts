@@ -36,7 +36,7 @@ export class ProductFormComponent implements OnInit {
       this.productService.getProduct(this.id).subscribe((pdt) => this.product = pdt);
       this.isEditMode = true;
     }
-    this.categories$ = this.categoryService.findAll();
+    this.categories$ = this.categoryService.getCategories();
   }
 
   Cancel() {

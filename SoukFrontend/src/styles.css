@@ -26,3 +26,19 @@ body {
 .p-galleria-item-nav {
   transform: translateY(-50%);
 }
+
+/*
+@media (min-width: 992px) {
+
+
+  .p-galleria-item {
+    position: relative;
+    top: -101px;
+    height: 100%;
+  }
+
+  .p-galleria-item-container {
+    z-index: 0;
+
+  }
+}*/

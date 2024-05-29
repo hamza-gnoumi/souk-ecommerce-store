@@ -1,0 +1,11 @@
+<div>
+  <h2>{{operation === 'update'?'Update Category':'New Category'}}</h2>
+  <div class="field">
+    <label for="name">Name</label>
+    <input [(ngModel)]="category.name" name="category" type="text" id="name" pInputText placeholder="palteaux"
+      class="w-full">
+  </div>
+
+</div>
+<button pButton label="Submit" class="w-full" [disabled]="!isCategoryValid" (click)="onSubmit()"></button>
+<button pButton label="Cancel" class="w-full p-button-outlined p-button-danger mt-2 " (click)="onCancel()"></button>

@@ -1,6 +1,7 @@
 package com.gnam.souk.service;
 
 import com.gnam.souk.exception.NotFoundException;
+import com.gnam.souk.exception.RequestValidationException;
 import com.gnam.souk.model.Cart;
 import com.gnam.souk.model.ProductItem;
 import com.gnam.souk.repository.CartRepository;
@@ -32,8 +33,19 @@ public class CartService {
         if (existingCart == null) {
             throw new NotFoundException("Cart not found with id: " + id);
         }
-        updatedCart.setId(id);
-        return cartRepository.save(updatedCart);
+        boolean changes=false;
+        if (updatedCart.getUserId()!=null&& !updatedCart.getUserId().equals(existingCart.getUserId())){
+            changes=true;
+            existingCart.setUserId(updatedCart.getUserId());
+        }
+        if (updatedCart.getProducts()!=null&& !updatedCart.getProducts().equals(existingCart.getProducts())){
+            changes=true;
+            existingCart.setProducts(updatedCart.getProducts());
+        }
+        if(!changes)
+            throw new RequestValidationException("Nothing Change");
+
+        return cartRepository.save(existingCart);
     }
 
     public void deleteCart(String id) {

@@ -8,10 +8,27 @@ import { Category } from '../models/category';
 })
 export class CategoriesService {
 
-  private readonly productUrl = "http://localhost:8080/api/v1/categories"
+  private readonly categoriesUrl = 'http://localhost:8080/api/v1/categories';
+
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.productUrl);
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.categoriesUrl);
+  }
+
+  getCategory(id: string): Observable<Category> {
+    return this.http.get<Category>(`${this.categoriesUrl}/${id}`);
+  }
+
+  createCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(this.categoriesUrl, category);
+  }
+
+  updateCategory(id: string, category: Category): Observable<Category> {
+    return this.http.put<Category>(`${this.categoriesUrl}/${id}`, category);
+  }
+
+  deleteCategory(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.categoriesUrl}/${id}`);
   }
 }
