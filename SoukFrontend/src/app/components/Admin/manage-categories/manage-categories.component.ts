@@ -12,7 +12,9 @@ export class ManageCategoriesComponent implements OnInit {
   categories: Category[];
   display = false;
   operation: 'update' | 'create' = 'create';
-  category;
+  category: Category = {
+    name: ""
+  };
 
   constructor(private categoriesService: CategoriesService,
     private confirmationService: ConfirmationService,

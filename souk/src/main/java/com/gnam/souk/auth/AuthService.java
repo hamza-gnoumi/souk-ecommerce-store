@@ -1,11 +1,16 @@
 package com.gnam.souk.auth;
 
 import com.gnam.souk.exception.RequestValidationException;
+import com.gnam.souk.jwt.JwtUtil;
 import com.gnam.souk.model.User;
 import com.gnam.souk.model.UserDto;
 import com.gnam.souk.model.UserDtoMapper;
 import com.gnam.souk.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,29 +21,29 @@ public class AuthService{
 
     private final UserService userService;
     private final UserDtoMapper userDtoMapper;
+    private final PasswordEncoder passwordEncoder;
+
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
 
 
 
-    public UserDto registerUser(User user) {
-        userService.addUser(user);
-        return userDtoMapper.apply(user);
-    }
+    public AuthResponse login(AuthRequest request)  {
 
-    public UserDto login(AuthRequest request)  {
-        Optional<User> userOptional = userService.selectUserByEmail(request.username());
-
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            if (user.getPassword().equals(request.password())) {
-                return userDtoMapper.apply(user);
-            } else {
-                throw new RequestValidationException("Invalid username or password");
-            }
-        } else {
-            throw new RequestValidationException("Invalid username or password");
+            UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(
+                    request.username(),
+                    request.password()
+            );
+            Authentication authentication = authenticationManager.authenticate(
+                    authenticationToken
+            );
+            User principal = (User) authentication.getPrincipal();
+            UserDto userDto = userDtoMapper.apply(principal);
+            String token = jwtUtil.issueToken(userDto.username(), userDto.roles());
+            return new AuthResponse(token, userDto);
         }
 
-    }
+
 
 
 }

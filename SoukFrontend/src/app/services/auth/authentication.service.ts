@@ -1,4 +1,3 @@
-import { UserDto } from '../../models/user-dto';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -6,6 +5,7 @@ import { AuthenticationRequest } from '../../models/authentication-request';
 import { AuthenticationResponse } from '../../models/authentication-response';
 import { UserRegistrationRequest } from '../../models/user-registration-request';
 import { Router } from '@angular/router';
+import { UserDto } from 'src/app/models/user-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class AuthenticationService {
   }
   get currentUser() {
     if (localStorage.getItem('user'))
-      return JSON.parse(localStorage.getItem('user'));
+      return JSON.parse(localStorage.getItem('user')).userDto;
     return null;
 
   }

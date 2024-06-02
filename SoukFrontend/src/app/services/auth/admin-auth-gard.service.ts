@@ -12,7 +12,7 @@ export const AdminAuthGard: CanActivateFn = (
   | boolean
   | UrlTree => {
   const storedUser = localStorage.getItem('user');
-  if (storedUser && JSON.parse(storedUser).isAdmin)
+  if (storedUser && JSON.parse(storedUser).userDto.isAdmin)
     return true;
 
 

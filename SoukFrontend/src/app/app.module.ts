@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home-page/home/home.component';
 import { ShopComponent } from './components/shop/shop.component';
@@ -37,6 +37,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ManageCategoriesComponent } from './components/Admin/manage-categories/manage-categories.component';
 import { CategoryFormComponent } from './components/Admin/category-form/category-form.component';
+import { HttpInterceptorService } from './services/http-interceptor.service';
 
 
 
@@ -84,7 +85,13 @@ import { CategoryFormComponent } from './components/Admin/category-form/category
 
   ],
   providers: [
-    MessageService, ConfirmationService
+    MessageService, ConfirmationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    }
+
   ],
   bootstrap: [AppComponent]
 })

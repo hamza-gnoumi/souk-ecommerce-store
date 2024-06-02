@@ -1,7 +1,9 @@
 
 import { inject } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { JwtHelperService } from "@auth0/angular-jwt";
 import { Observable } from "rxjs";
+import { AuthenticationResponse } from "src/app/models/authentication-response";
 
 
 export const AuthGuard: CanActivateFn = (
@@ -13,13 +15,18 @@ export const AuthGuard: CanActivateFn = (
   | boolean
   | UrlTree => {
   const storedUser = localStorage.getItem('user');
-  if (storedUser)
-    return true;
-
-
+  if (storedUser) {
+    const authResponse: AuthenticationResponse = JSON.parse(storedUser);
+    const token = authResponse.token;
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const isTokenNotExpired = !jwtHelper.isTokenExpired(token);
+      if (isTokenNotExpired) {
+        return true;
+      }
+    }
+  }
 
   return inject(Router).createUrlTree(['login']);
 
-
-
-};
+}

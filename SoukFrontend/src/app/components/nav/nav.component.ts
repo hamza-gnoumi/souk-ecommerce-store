@@ -8,15 +8,14 @@ import { UserDto } from 'src/app/models/user-dto';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit, OnChanges {
-  currentUser: UserDto = {
-    isAdmin: false
-  };
+  currentUser: UserDto;
   constructor(private authService: AuthenticationService) {
   }
   ngOnInit(): void {
     if (this.authService.currentUser)
       this.currentUser = this.authService.currentUser;
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
+    // console.log(this.currentUser.isAdmin)
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (this.authService.currentUser)

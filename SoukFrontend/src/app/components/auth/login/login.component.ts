@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationRequest } from 'src/app/models/authentication-request';
 import { AuthenticationService } from 'src/app/services/auth/authentication.service';
@@ -8,24 +8,16 @@ import { AuthenticationService } from 'src/app/services/auth/authentication.serv
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  userlogin: AuthenticationRequest = {
-    username: "",
-    password: ""
-  };
+export class LoginComponent {
+  userlogin: AuthenticationRequest = {};
   errMsg = '';
 
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
   ) { }
-  ngOnInit(): void {
-    if (localStorage.getItem('user'))
-      this.router.navigate[('shop')];
-  }
 
   login() {
-    console.log(this.userlogin);
     this.errMsg = '';
     this.authenticationService.login(this.userlogin)
       .subscribe({
